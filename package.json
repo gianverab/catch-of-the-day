@@ -1,6 +1,11 @@
 {
   "name": "catch-of-the-day",
-  "version": "0.0.3",
+  "version": "1.0.0",
+  "description": "A real-time app for a trendy seafood market.",
+  "author": {
+    "name": "Giancarlo Vera"
+  },
+  "license": "MIT",
   "private": true,
   "devDependencies": {
     "concurrently": "3.5.1",
