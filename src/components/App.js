@@ -1,8 +1,16 @@
 import React from 'react';
-import StorePicker from './StorePicker';
+import Header from './Header';
+import Order from './Order';
+import Inventory from './Inventory';
 
 const App = () => (
-  <StorePicker />
+  <div className="catch-of-the-day">
+    <div className="menu">
+      <Header />
+    </div>
+    <Order />
+    <Inventory />
+  </div>
 );
 
 export default App;
