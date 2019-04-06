@@ -42,13 +42,12 @@ class App extends Component {
 
   addFish = fish => {
     // 1. Take a copy of the existing state
-    const { fishes } = this.state;
-    const fishList = { ...fishes };
+    const fishes = { ...this.state.fishes };
     // 2. Add our new fish to that fishes variable
-    fishList[`fish${Date.now()}`] = fish;
+    fishes[`fish${Date.now()}`] = fish;
     // 3. Set the new fishes object to state
     this.setState({
-      fishes: fishList,
+      fishes,
     });
   };
 
@@ -57,6 +56,17 @@ class App extends Component {
     const fishes = { ...this.state.fishes };
     // 2. Update that state
     fishes[key] = updatedFish;
+    // 3. Set that to state
+    this.setState({
+      fishes,
+    });
+  };
+
+  deleteFish = key => {
+    // 1. Take a copy of the existing state
+    const fishes = { ...this.state.fishes };
+    // 2. Update the state
+    fishes[key] = null;
     // 3. Set that to state
     this.setState({
       fishes,
@@ -80,6 +90,31 @@ class App extends Component {
     });
   };
 
+  takeFromOrder = key => {
+    // 1. Take a copy of the existing state
+    const order = { ...this.state.order };
+    // 2. Take one item from the order and update the number in our order
+    order[key] = order[key] - 1 || null;
+    if (order[key] === null) {
+      delete order[key];
+    }
+    // 3. Call setState to update our state object
+    this.setState({
+      order,
+    });
+  };
+
+  removeFromOrder = key => {
+    // 1. Take a copy of the existing state
+    const order = { ...this.state.order };
+    // 2. Remove item from the order and update our order
+    delete order[key];
+    // 3. Call setState to update our state object
+    this.setState({
+      order,
+    });
+  };
+
   render() {
     const { fishes, order } = this.state;
     return (
@@ -92,10 +127,16 @@ class App extends Component {
             ))}
           </ul>
         </div>
-        <Order fishes={fishes} order={order} />
+        <Order
+          fishes={fishes}
+          order={order}
+          removeFromOrder={this.removeFromOrder}
+          takeFromOrder={this.takeFromOrder}
+        />
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={fishes}
         />

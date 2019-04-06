@@ -4,12 +4,12 @@ import EditFishForm from './EditFishForm';
 
 class Inventory extends Component {
   render() {
-    const { fishes, addFish, updateFish, loadSampleFishes } = this.props;
+    const { fishes, addFish, updateFish, deleteFish, loadSampleFishes } = this.props;
     return (
       <div className="inventory">
         <h2>Inventory!</h2>
         {Object.keys(fishes).map(key => (
-          <EditFishForm updateFish={updateFish} fish={fishes[key]} key={key} index={key} />
+          <EditFishForm updateFish={updateFish} deleteFish={deleteFish} fish={fishes[key]} key={key} index={key} />
         ))}
         <AddFishForm addFish={addFish} />
         <button type="button" onClick={loadSampleFishes}>
