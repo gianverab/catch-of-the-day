@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class EditFishForm extends Component {
+  static propTypes = {
+    fish: PropTypes.shape({
+      name: PropTypes.string,
+      status: PropTypes.string,
+      desc: PropTypes.string,
+      image: PropTypes.string,
+      price: PropTypes.number,
+    }).isRequired,
+    updateFish: PropTypes.func.isRequired,
+    deleteFish: PropTypes.func.isRequired,
+    index: PropTypes.string.isRequired,
+  };
+
   handleChange = event => {
+    const { fish, updateFish, index } = this.props;
     // 1. Take a copy of the current fish
     const updatedFish = {
-      ...this.props.fish,
+      ...fish,
       [event.currentTarget.name]: event.currentTarget.value,
     };
     // 2. Update that fish
-    this.props.updateFish(this.props.index, updatedFish);
+    updateFish(index, updatedFish);
     // console.log(updatedFish);
   };
 
